@@ -34,6 +34,11 @@ Remove blank and duplicate rows, then export one cleaned CSV file per product to
 product_csvs
 
 one of the air conditioners products:
+
+
+
+
+
 <img width="593" height="653" alt="table" src="https://github.com/user-attachments/assets/84754424-26ac-4438-85db-9767fcfa06ed" />
 
 
