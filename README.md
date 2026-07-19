@@ -6,9 +6,32 @@ The project uses Python libraries such as Selenium, Requests, BeautifulSoup, pdf
 
 procedure of Data analysis:
 
-Discover categories: scrape daikincomfort.com/products for all /products/ links (requests + BeautifulSoup).
-Expand into product pages: Selenium scrolls each category page and collects nested product links; leaf pages with no children are kept as products themselves.
-Parse & scrape each product: split the URL into category levels + product slug, then fetch each page for its real name and Specification Sheet PDF link, using a scoped search that won't grab the wrong document.
-Clean & save the catalog: dedupe products reachable via multiple category paths, flag suspicious links, and write product_specification_sheets.csv.
-Extract each PDF's table: download each spec PDF, pick the largest table on the "Product Specifications" page.cells into clean rows.
-Save per-product CSVs: drop black and duplicate rows, then write one CSV per product into product_csvs.
+Discover product categories
+
+Scrape daikincomfort.com/products with Requests and BeautifulSoup to identify all available product category links.
+
+Explore nested product pages
+
+Use Selenium to scroll through category pages and collect nested product links. Leaf pages without child products are treated as individual products.
+
+Scrape product information
+
+Parse each URL into its category hierarchy and product slug. Then fetch each product page with retry handling to extract the official product name and the relevant Specification Sheet PDF link using a scoped search strategy.
+
+Clean and build the product catalog
+
+Remove duplicate products that appear through multiple category paths, flag suspicious non-.pdf links, and save the resulting catalog to product_specification_sheets.csv.
+
+Extract specification tables from PDFs
+
+Download each Specification Sheet PDF with caching to avoid repeated requests. On the Product Specifications page, identify the largest table and split multi-line category and parameter cells into clean, structured rows.
+
+Save product-level datasets
+
+Remove blank and duplicate rows, then export one cleaned CSV file per product to:
+product_csvs
+
+
+
+
+
